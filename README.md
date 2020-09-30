@@ -4,6 +4,8 @@
 
 the good news is that slotpicker is available in multiple langs, the bad news that are **only 3 langs**, **en, ar, and fr**, sorry i only know those 3, if you know another lang feel free to go to the lang.js file and follow the pattren there.
 
+[See Demo](https://rc-slotpicker.netlify.app)
+
 <br />
 
 #### Install
