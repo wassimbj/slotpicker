@@ -1,0 +1,9 @@
+node_modules
+demo
+src
+webpack.config.js
+.babelrc
+.eslintrc.js
+slotpicker-1.0.0.tgz
+.vscode
+.gitignore
