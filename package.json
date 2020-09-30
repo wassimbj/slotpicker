@@ -1,6 +1,6 @@
 {
     "name": "slotpicker",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "description": "",
     "main": "./dist/SlotPicker.js",
     "license": "MIT",
