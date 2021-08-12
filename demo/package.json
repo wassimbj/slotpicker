@@ -9,7 +9,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "slotpicker": "^1.0.0"
+    "slotpicker": "file:../slotpicker-1.3.0.tgz"
   },
   "scripts": {
     "start": "react-scripts start",

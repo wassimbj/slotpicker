@@ -11,7 +11,9 @@
 .not_available:hover {
   background: #e53e3e;
 }
-
+.sp-rtl{
+  direction: rtl;
+}
 .center_absolute {
   transform: translate(-50%, -100%);
 }
@@ -64,7 +66,7 @@
   color: #752f2f;
   font-weight: 500;
 }
-.dp-timeslot {
+.sp-timeslot {
   height: 24px;
   flex-grow: 1;
   margin: 0px;
@@ -75,7 +77,7 @@
   background-color: #8fe286;
 }
 
-.dp-timeslot .radioBtn{
+.sp-timeslot .radioBtn{
   position: absolute;
   top: 0;
   left: 0;
@@ -85,7 +87,7 @@
   opacity: 0;
 }
 
-.dp-timeslot .dp-tick {
+.sp-timeslot .sp-tick {
   position: absolute;
   display: block;
   top: 34px;
@@ -99,7 +101,7 @@
   font-weight: 500;
   letter-spacing: 1px;
 }
-.dp-timeslot .dp-tick strong {
+.sp-timeslot .sp-tick strong {
   display: block;
   color: #000;
   font-size: 10px;
@@ -107,7 +109,7 @@
   letter-spacing: 0px;
   white-space: nowrap;
 }
-.dp-timeslot .dp-success-label {
+.sp-timeslot .sp-success-label {
   color: rgba(255, 255, 255, 0.8);
   display: block;
   text-align: center;
@@ -116,7 +118,7 @@
   letter-spacing: 1px;
   font-size: 9px;
 }
-.dp-timeslot .dp-label {
+.sp-timeslot .sp-label {
   display: none;
   text-align: center;
   padding: 7px 8px 7px 8px;
@@ -133,17 +135,17 @@
   transition: all 0.2s ease;
   z-index: 10;
 }
-.dp-timeslot.selected:not(.is-booked),
-.dp-timeslot.selected:not(.is-off) {
+.sp-timeslot.selected:not(.is-booked),
+.sp-timeslot.selected:not(.is-off) {
   background-color: #03a9f4;
   z-index: 4;
 }
-.dp-timeslot.selected:not(.is-booked):hover,
-.dp-timeslot.selected:not(.is-off):hover {
+.sp-timeslot.selected:not(.is-booked):hover,
+.sp-timeslot.selected:not(.is-off):hover {
   background-color: #03a9f4;
 }
-.dp-timeslot.selected:not(.is-booked):after,
-.dp-timeslot.selected:not(.is-off):after {
+.sp-timeslot.selected:not(.is-booked):after,
+.sp-timeslot.selected:not(.is-off):after {
   content: "";
   position: absolute;
   width: 1px;
@@ -154,15 +156,15 @@
   background-color: #03a9f4;
   display: none;
 }
-.dp-timeslot.selected:not(.is-booked) .dp-label,
-.dp-timeslot.selected:not(.is-off) .dp-label {
+.sp-timeslot.selected:not(.is-booked) .sp-label,
+.sp-timeslot.selected:not(.is-off) .sp-label {
   top: -3px;
   background-color: #03a9f4;
   color: #fff;
   display: block;
 }
-.dp-timeslot.selected:not(.is-booked):before,
-.dp-timeslot.selected:not(.is-off):before {
+.sp-timeslot.selected:not(.is-booked):before,
+.sp-timeslot.selected:not(.is-off):before {
   background-color: #03a9f4;
   display: block;
   width: 10px;
@@ -171,40 +173,40 @@
   top: -12px;
   left: 50%;
 }
-.dp-timeslot.is-booked {
+.sp-timeslot.is-booked {
   background-color: #e6e9ef;
   margin: 0px;
   cursor: not-allowed;
 }
-.dp-timeslot.is-booked:before {
+.sp-timeslot.is-booked:before {
   background-color: #e42806;
 }
-.dp-timeslot.is-booked .dp-label {
+.sp-timeslot.is-booked .sp-label {
   background-color: #e42806;
 }
-.dp-timeslot.is-booked:hover {
+.sp-timeslot.is-booked:hover {
   background-color: #e42806;
 }
-.dp-timeslot.is-off {
+.sp-timeslot.is-off {
   background-color: #e6e9ef;
   margin: 0px;
   border-color: #fff;
   max-width: 25%;
   cursor: not-allowed;
 }
-.dp-timeslot.is-off:before {
+.sp-timeslot.is-off:before {
   background-color: #e42806;
 }
-.dp-timeslot.is-off .dp-label {
+.sp-timeslot.is-off .sp-label {
   background-color: #e42806;
 }
-.dp-timeslot.is-off:hover {
+.sp-timeslot.is-off:hover {
   background-color: #e6e9ef;
 }
-.dp-timeslot.is-off:hover .dp-label {
+.sp-timeslot.is-off:hover .sp-label {
   display: none;
 }
-.dp-timeslot.with-tick:after {
+.sp-timeslot.with-tick:after {
   content: "";
   position: absolute;
   width: 1px;
@@ -213,12 +215,12 @@
   bottom: -7px;
   background-color: rgba(0, 0, 0, 0.4);
 }
-.dp-timeslot:hover {
+.sp-timeslot:hover {
   background-color: #04bb03;
 }
-.dp-timeslot:hover:before {
+.sp-timeslot:hover:before {
   top: 0px;
 }
-.dp-timeslot:hover .dp-label {
+.sp-timeslot:hover .sp-label {
   display: block;
 }

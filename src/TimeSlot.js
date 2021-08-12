@@ -7,57 +7,58 @@ dayjs.extend(utc);
 dayjs.extend(duration);
 
 export default function TimeSlot({
-  is_off,
-  time_s,
+  isOff,
+  timeInSec,
   interval,
   lang,
-  is_selected,
+  isSelected,
   onSelect,
 }) {
 
-   let is_pure_time = dayjs
-   .utc(dayjs.duration(time_s, "s").as("milliseconds"))
+   const isPureTime = dayjs
+   .utc(dayjs.duration(timeInSec, "s").as("milliseconds"))
    .get('s') == 0;
+
+   const langData = langText[`${lang}`] 
 
   return (
     <React.Fragment>
       <div
-        className={`dp-timeslot ${is_off ? "is-booked" : ''} ${
-          is_selected && !is_off ? "selected" : ""
-        } ${is_pure_time ? 'with-tick' : ''}`}
-        data-minutes={time_s}
+        className={`sp-timeslot ${isOff ? "is-booked" : ''} ${
+          isSelected && !isOff ? "selected" : ""
+        } ${isPureTime ? 'with-tick' : ''}`}
+        data-minutes={timeInSec}
       >
-        <span className="dp-label">
-          {is_selected && !is_off ? (
-            <span className="dp-success-label">{langText[`${lang}`].selectedTitle}</span>
+        <span className="sp-label">
+          {isSelected && !isOff ? (
+            <span className="sp-success-label">{langData.selectedTitle}</span>
           ) : null}
           {dayjs
-            .utc(dayjs.duration(time_s, "s").as("milliseconds"))
+            .utc(dayjs.duration(timeInSec, "s").as("milliseconds"))
             .format("mm:ss")}{" "}
-          {time_s >= 720 ? `${langText[`${lang}`].pm}` : `${langText[`${lang}`].am}`} - {" "}
+          {timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`} - {" "}
           {dayjs
-            .utc(dayjs.duration(time_s + interval, "s").as("milliseconds"))
+            .utc(dayjs.duration(timeInSec + interval, "s").as("milliseconds"))
             .format("mm:ss")}{" "}
-          {time_s >= 720 ? `${langText[`${lang}`].pm}` : `${langText[`${lang}`].am}`}
+          {timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`}
         </span>
-        {is_off ? null : (
+        {isOff ? null : (
           <input
             type="radio"
             name="time"
-            value={time_s}
+            value={timeInSec}
             onChange={onSelect}
-            // className="absolute top-0 left-0 w-full h-full cursor-pointer z-10 opacity-0"
             className='radioBtn'
           />
         )}
-        <span class="dp-tick">
+        <span class="sp-tick">
           <strong>
             {
-              is_pure_time ? dayjs.utc(dayjs.duration(time_s, "s").as("milliseconds")).get('m') : null
+              isPureTime ? dayjs.utc(dayjs.duration(timeInSec, "s").as("milliseconds")).get('m') : null
             }
           </strong>
-          {is_pure_time ? (
-            time_s >= 720 ? `${langText[`${lang}`].pm}` : `${langText[`${lang}`].am}`
+          {isPureTime ? (
+            timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`
           ): null}
         </span>
       </div>

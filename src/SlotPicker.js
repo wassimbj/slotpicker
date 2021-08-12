@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './assets/style.css'
+import "./assets/style.css";
 import TimeSlot from "./TimeSlot";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -10,29 +10,26 @@ dayjs.extend(duration);
 
 export default function TimeSlotPicker({
   interval,
-  unavailableSlots,
-  selected_date,
+  unAvailableSlots,
+  selectedDate,
   from,
   to,
   lang,
   defaultSelectedTime,
   onSelectTime,
 }) {
-
   // default stuff
-  if(!lang){
-    lang = 'en';
+  if (!lang) {
+    lang = "en";
   }
-  if(!unavailableSlots){
-    unavailableSlots = [];
+  if (!unAvailableSlots) {
+    unAvailableSlots = [];
   }
-  if(!selected_date){
-    selected_date = new Date();
+  if (!selectedDate) {
+    selectedDate = new Date();
   }
 
   let [selectedTime, setSelectedTime] = useState(defaultSelectedTime || 0);
-
-  // let formattedSelectedDate = `${dayjs(new Date(selected_date)).format("D")} ${dayjs(new Date(selected_date)).format("MMMM")}`;
 
   const handleSelection = (e) => {
     let selectedSlot = e.target.value;
@@ -42,42 +39,41 @@ export default function TimeSlotPicker({
 
   //  generate time slots
   let timeSlots = [];
-  const selected_date_is_today = dayjs(dayjs(new Date(selected_date)).format('YYYY-MM-DD')).isSame(dayjs().format('YYYY-MM-DD'));
-  const curr_time = dayjs().format('HH:mm');
-  const curr_time_s = dayjs.duration(`00:${curr_time}`).asSeconds(); // time in sec
+  const isSelectedDateToday = dayjs(
+    dayjs(new Date(selectedDate)).format("YYYY-MM-DD")
+  ).isSame(dayjs().format("YYYY-MM-DD"));
+  const currTime = dayjs().format("HH:mm");
+  const currTimeInSec = dayjs.duration(`00:${currTime}`).asSeconds(); // time in sec
 
-  // if(!available_times.loading){
-    // console.log('available_times.data: ', available_times)
-    let startsAt = !from ? 480 : from;
-    let endsAt = !to ? 1020 : to;
-  
-    for (let slot = startsAt; slot < endsAt - interval / 2; slot = slot + interval) {
-      timeSlots.push(
-        <TimeSlot
-          interval={interval}
-          is_off={(slot < curr_time_s && selected_date_is_today) || (unavailableSlots.indexOf(slot) !== -1)}
-          time_s={slot}
-          lang={lang}
-          key={slot}
-          is_selected={selectedTime == slot}
-          onSelect={handleSelection}
-        />
-      );
-    }
-  // }
+  // 480 and 1020 are default stuff
+  let startsAt = !from ? 480 : from;
+  let endsAt = !to ? 1020 : to;
 
+  for (
+    let slot = startsAt;
+    slot < endsAt - interval / 2;
+    slot = slot + interval
+  ) {
+    timeSlots.push(
+      <TimeSlot
+        interval={interval}
+        isOff={
+          (slot < currTimeInSec && isSelectedDateToday) ||
+          unAvailableSlots.indexOf(slot) !== -1
+        }
+        timeInSec={slot}
+        lang={lang}
+        key={slot}
+        isSelected={selectedTime == slot}
+        onSelect={handleSelection}
+      />
+    );
+  }
   return (
     <div className="p-5">
-      <div className="time-selector-w d-block">
-        {/* <div className="times-header font-bold text-gray-700">
-          اختر الوقت الذي يناسبك لهذا التاريخ <span>{formattedSelectedDate}</span>
-        </div> */}
+      <div className={`time-selector-w d-block ${lang == "ar" && "sp-rtl"}`}>
         <div className="os-times-w">
-          <div className="timeslots">
-            {
-              timeSlots.map((slot) => slot)
-            }
-          </div>
+          <div className="timeslots">{timeSlots.map((slot) => slot)}</div>
         </div>
       </div>
     </div>

@@ -1,12 +1,13 @@
 {
     "name": "slotpicker",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "",
     "main": "./dist/SlotPicker.js",
     "license": "MIT",
     "scripts": {
         "build": "webpack",
-        "devpack": "npm run build && npm pack && cd demo && npm i ../slotpicker-1.0.0.tgz && npm start"
+        "devpack": "npm run build && npm pack && cd demo && npm i ../slotpicker-1.3.0.tgz && npm start",
+        "deploy": "rm *slotpicker* && npm publish"
     },
     "keywords": [
         "React.js",
