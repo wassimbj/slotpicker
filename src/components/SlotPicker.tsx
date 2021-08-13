@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/style.css';
 import TimeSlot from './TimeSlot';
+import { SlotPickerProps } from '../types';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import duration from 'dayjs/plugin/duration';
@@ -8,16 +9,6 @@ import duration from 'dayjs/plugin/duration';
 dayjs.extend(utc);
 dayjs.extend(duration);
 
-interface Props {
-  interval: number;
-  unAvailableSlots?: Array<number>;
-  selectedDate?: Date;
-  from?: number;
-  to?: number;
-  lang?: "ar" | "en" | "fr";
-  defaultSelectedTime?: number;
-  onSelectTime: (selectedTime: number) => any;
-}
 
 export default function TimeSlotPicker({
   interval,
@@ -28,7 +19,7 @@ export default function TimeSlotPicker({
   lang,
   defaultSelectedTime,
   onSelectTime,
-}: Props) {
+}: SlotPickerProps) {
   // default stuff
   // 480 and 1020 are default stuff
   lang = !lang ? 'en' : lang;
@@ -37,15 +28,7 @@ export default function TimeSlotPicker({
   selectedDate = !selectedDate ? new Date() : selectedDate;
   let startsAt = !from ? 480 : from;
   let endsAt = !to ? 1020 : to;
-  // if (!lang) {
-  //   lang = "en";
-  // }
-  // if (!unAvailableSlots) {
-  //   unAvailableSlots = [];
-  // }
-  // if (!selectedDate) {
-  //   selectedDate = new Date();
-  // }
+
 
   let [selectedTime, setSelectedTime] = useState<number>(
     defaultSelectedTime || 0

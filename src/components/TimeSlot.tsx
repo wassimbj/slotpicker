@@ -1,20 +1,12 @@
 import React from "react";
-import langText from '../assets/lang';
+import langText from '../lang';
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import duration from "dayjs/plugin/duration";
+import { TimeSlotProps } from "../types";
 dayjs.extend(utc);
 dayjs.extend(duration);
 
-
-interface Props {
-  isOff: boolean
-  timeInSec: number
-  interval: number
-  lang: "ar" | "en" | "fr"
-  isSelected: boolean
-  onSelect: (e: any) => any
-}
 
 export default function TimeSlot({
   isOff,
@@ -23,7 +15,7 @@ export default function TimeSlot({
   lang,
   isSelected,
   onSelect,
-}: Props) {
+}: TimeSlotProps) {
 
    const isPureTime = dayjs
    .utc(dayjs.duration(timeInSec, "s").as("milliseconds"))

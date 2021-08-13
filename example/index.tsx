@@ -5,12 +5,18 @@ import SlotPicker from '../.';
 
 const App = () => {
   return (
-    <div style={{ padding: "3rem" }}>
-      <SlotPicker
-        interval={20}
-        lang="en"
-        onSelectTime={(s: number) => console.log(s)}
-      />
+    <div style={{ padding: '3rem' }}>
+      {['ar', 'en', 'fr'].map((lang: 'ar' | 'en' | 'fr') => (
+        <>
+          <br />
+          <SlotPicker
+            interval={20}
+            lang={lang}
+            onSelectTime={(s: number) => console.log(s)}
+          />
+        </>
+      ))}
+      <br />
     </div>
   );
 };
