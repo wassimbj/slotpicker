@@ -1,0 +1,70 @@
+{
+  "version": "2.3.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "React.js",
+    "time picker"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "slotpicker2",
+  "author": "wassim",
+  "module": "dist/slotpicker2.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/slotpicker2.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/slotpicker2.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^5.0.3",
+    "@types/react": "^17.0.17",
+    "@types/react-dom": "^17.0.9",
+    "husky": "^7.0.1",
+    "identity-obj-proxy": "^3.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "size-limit": "^5.0.3",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.6",
+    "rollup-plugin-postcss": "^4.0.1"
+  }
+}
