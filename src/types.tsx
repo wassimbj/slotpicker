@@ -1,4 +1,4 @@
-export type Langs = 'ar' | 'en' | 'fr'
+export type Langs = 'ar' | 'en' | 'fr';
 
 export interface SlotPickerProps {
   interval: number;
@@ -18,4 +18,10 @@ export interface TimeSlotProps {
   lang: Langs;
   isSelected: boolean;
   onSelect: (e: any) => any;
+}
+
+export interface LangProps {
+  selectedTitle: string;
+  am: string;
+  pm: string;
 }

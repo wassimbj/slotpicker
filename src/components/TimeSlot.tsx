@@ -1,12 +1,11 @@
-import React from "react";
+import React from 'react';
 import langText from '../lang';
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import duration from "dayjs/plugin/duration";
-import { TimeSlotProps } from "../types";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import duration from 'dayjs/plugin/duration';
+import { TimeSlotProps } from '../types';
 dayjs.extend(utc);
 dayjs.extend(duration);
-
 
 export default function TimeSlot({
   isOff,
@@ -16,18 +15,16 @@ export default function TimeSlot({
   isSelected,
   onSelect,
 }: TimeSlotProps) {
+  const isPureTime =
+    dayjs.utc(dayjs.duration(timeInSec, 's').as('milliseconds')).get('s') == 0;
 
-   const isPureTime = dayjs
-   .utc(dayjs.duration(timeInSec, "s").as("milliseconds"))
-   .get('s') == 0;
-
-   const langData = langText[lang]
+  const langData = langText[lang];
 
   return (
     <React.Fragment>
       <div
-        className={`sp-timeslot ${isOff ? "is-booked" : ''} ${
-          isSelected && !isOff ? "selected" : ""
+        className={`sp-timeslot ${isOff ? 'is-booked' : ''} ${
+          isSelected && !isOff ? 'selected' : ''
         } ${isPureTime ? 'with-tick' : ''}`}
         data-minutes={timeInSec}
       >
@@ -36,12 +33,12 @@ export default function TimeSlot({
             <span className="sp-success-label">{langData.selectedTitle}</span>
           ) : null}
           {dayjs
-            .utc(dayjs.duration(timeInSec, "s").as("milliseconds"))
-            .format("mm:ss")}{" "}
-          {timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`} - {" "}
+            .utc(dayjs.duration(timeInSec, 's').as('milliseconds'))
+            .format('mm:ss')}{' '}
+          {timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`} -{' '}
           {dayjs
-            .utc(dayjs.duration(timeInSec + interval, "s").as("milliseconds"))
-            .format("mm:ss")}{" "}
+            .utc(dayjs.duration(timeInSec + interval, 's').as('milliseconds'))
+            .format('mm:ss')}{' '}
           {timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`}
         </span>
         {isOff ? null : (
@@ -50,18 +47,22 @@ export default function TimeSlot({
             name="time"
             value={timeInSec}
             onChange={onSelect}
-            className='radioBtn'
+            className="radioBtn"
           />
         )}
         <span className="sp-tick">
           <strong>
-            {
-              isPureTime ? dayjs.utc(dayjs.duration(timeInSec, "s").as("milliseconds")).get('m') : null
-            }
+            {isPureTime
+              ? dayjs
+                  .utc(dayjs.duration(timeInSec, 's').as('milliseconds'))
+                  .get('m')
+              : null}
           </strong>
-          {isPureTime ? (
-            timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`
-          ): null}
+          {isPureTime
+            ? timeInSec >= 720
+              ? `${langData.pm}`
+              : `${langData.am}`
+            : null}
         </span>
       </div>
     </React.Fragment>

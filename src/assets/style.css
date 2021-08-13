@@ -11,7 +11,7 @@
 .not_available:hover {
   background: #e53e3e;
 }
-.sp-rtl{
+.sp-rtl {
   direction: rtl;
 }
 .center_absolute {
@@ -77,7 +77,7 @@
   background-color: #8fe286;
 }
 
-.sp-timeslot .radioBtn{
+.sp-timeslot .radioBtn {
   position: absolute;
   top: 0;
   left: 0;
@@ -146,7 +146,7 @@
 }
 .sp-timeslot.selected:not(.is-booked):after,
 .sp-timeslot.selected:not(.is-off):after {
-  content: "";
+  content: '';
   position: absolute;
   width: 1px;
   left: 50%;
@@ -207,7 +207,7 @@
   display: none;
 }
 .sp-timeslot.with-tick:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 1px;
   left: 50%;

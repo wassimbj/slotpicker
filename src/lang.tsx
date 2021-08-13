@@ -1,12 +1,6 @@
-import { Langs } from "./types";
+import { Langs, LangProps } from './types';
 
-interface Props {
-  selectedTitle: string;
-  am: string;
-  pm: string;
-}
-
-const lang: Record<Langs, Props> = {
+const lang: Record<Langs, LangProps> = {
   en: {
     selectedTitle: 'selected time',
     am: 'AM',

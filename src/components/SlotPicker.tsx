@@ -9,7 +9,6 @@ import duration from 'dayjs/plugin/duration';
 dayjs.extend(utc);
 dayjs.extend(duration);
 
-
 export default function TimeSlotPicker({
   interval,
   unAvailableSlots,
@@ -28,7 +27,6 @@ export default function TimeSlotPicker({
   selectedDate = !selectedDate ? new Date() : selectedDate;
   let startsAt = !from ? 480 : from;
   let endsAt = !to ? 1020 : to;
-
 
   let [selectedTime, setSelectedTime] = useState<number>(
     defaultSelectedTime || 0

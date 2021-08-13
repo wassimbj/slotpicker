@@ -1,3 +1,3 @@
-import SlotPicker from "./components/SlotPicker"
+import SlotPicker from './components/SlotPicker';
 
-export default SlotPicker
+export default SlotPicker;
