@@ -53,13 +53,13 @@ import SlotPicker from 'slotpicker';
 interface SlotPickerProps {
    interval: number
    onSelectTime: (from: number) => any
-   unAvailableSlots: Array<number>
-   selectedDate: Date
-   from: number
-   to: number
-   selectedSlotColor: string
-   lang: 'ar' | 'en' | 'fr'
-   defaultSelectedTime: number
+   unAvailableSlots?: Array<number>
+   selectedDate?: Date
+   from?: number
+   to?: number
+   selectedSlotColor?: string
+   lang?: 'ar' | 'en' | 'fr'
+   defaultSelectedTime?: number
 }
 ```
 
