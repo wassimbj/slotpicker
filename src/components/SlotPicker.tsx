@@ -24,9 +24,9 @@ export default function TimeSlotPicker({
   // 480 and 1020 are default stuff
   lang = !lang ? 'en' : lang;
   unAvailableSlots =
-    !unAvailableSlots || unAvailableSlots.length == 0 ? [] : unAvailableSlots;
+    !unAvailableSlots || unAvailableSlots.length === 0 ? [] : unAvailableSlots;
   selectedDate = !selectedDate ? new Date() : selectedDate;
-  selectedSlotColor = !selectedSlotColor ? "#000000" : selectedSlotColor;
+  selectedSlotColor = !selectedSlotColor ? '#000000' : selectedSlotColor;
   let startsAt = !from ? 480 : from;
   let endsAt = !to ? 1020 : to;
 

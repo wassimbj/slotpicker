@@ -7,7 +7,7 @@ export interface SlotPickerProps {
   from?: number;
   to?: number;
   lang?: Langs;
-  selectedSlotColor?: string
+  selectedSlotColor?: string;
   defaultSelectedTime?: number;
   onSelectTime: (selectedTime: number) => any;
 }
@@ -17,7 +17,7 @@ export interface TimeSlotProps {
   timeInSec: number;
   interval: number;
   lang: Langs;
-  selectedSlotColor?: string
+  selectedSlotColor?: string;
   isSelected: boolean;
   onSelect: (e: any) => any;
 }
