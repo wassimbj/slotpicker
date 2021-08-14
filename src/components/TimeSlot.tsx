@@ -28,7 +28,7 @@ export default function TimeSlot({
           isSelected && !isOff ? 'selected' : ''
         } ${isPureTime ? 'with-tick' : ''}`}
         data-minutes={timeInSec}
-        style={{ background: selectedSlotColor }}
+        style={isSelected && !isOff ? { background: selectedSlotColor } : {}}
       >
         <span
           className="sp-label"
