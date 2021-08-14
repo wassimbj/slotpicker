@@ -16,6 +16,7 @@ export default function TimeSlotPicker({
   from,
   to,
   lang,
+  selectedSlotColor,
   defaultSelectedTime,
   onSelectTime,
 }: SlotPickerProps) {
@@ -25,6 +26,7 @@ export default function TimeSlotPicker({
   unAvailableSlots =
     !unAvailableSlots || unAvailableSlots.length == 0 ? [] : unAvailableSlots;
   selectedDate = !selectedDate ? new Date() : selectedDate;
+  selectedSlotColor = !selectedSlotColor ? "#000000" : selectedSlotColor;
   let startsAt = !from ? 480 : from;
   let endsAt = !to ? 1020 : to;
 
@@ -58,6 +60,7 @@ export default function TimeSlotPicker({
           (slot < currTimeInSec && isSelectedDateToday) ||
           unAvailableSlots.indexOf(slot) !== -1
         }
+        selectedSlotColor={selectedSlotColor}
         timeInSec={slot}
         lang={lang}
         key={slot}

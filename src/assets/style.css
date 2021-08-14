@@ -14,22 +14,6 @@
 .sp-rtl {
   direction: rtl;
 }
-.center_absolute {
-  transform: translate(-50%, -100%);
-}
-
-.popup {
-  opacity: 0;
-}
-.not_available .popup {
-  background: #e53e3e;
-}
-
-.time_option:hover .popup {
-  opacity: 1;
-  transition: 250ms ease-in-out;
-}
-/*.mr-1{margin-right: 0.1rem}*/
 
 .time-selector-w {
   /* display: none; */
@@ -39,33 +23,11 @@
   margin-right: -2px;
 }
 
-.times-header {
-  font-size: 14px;
-  text-align: center;
-  padding-bottom: 10px;
-}
-.times-header span {
-  color: #03a9f4;
-  border-bottom: 1px dotted #03a9f4;
-}
-.os-dates-w {
-  margin: 0px -2.2%;
-}
-.os-times-w {
-  position: relative;
-}
 .timeslots {
   display: flex;
   justify-content: space-between;
 }
-.timeslots .not-working-message {
-  flex: 1;
-  padding: 3px 5px;
-  text-align: center;
-  background-color: #ffd4d4;
-  color: #752f2f;
-  font-weight: 500;
-}
+
 .sp-timeslot {
   height: 24px;
   flex-grow: 1;
@@ -137,13 +99,9 @@
 }
 .sp-timeslot.selected:not(.is-booked),
 .sp-timeslot.selected:not(.is-off) {
-  background-color: #03a9f4;
   z-index: 4;
 }
-.sp-timeslot.selected:not(.is-booked):hover,
-.sp-timeslot.selected:not(.is-off):hover {
-  background-color: #03a9f4;
-}
+
 .sp-timeslot.selected:not(.is-booked):after,
 .sp-timeslot.selected:not(.is-off):after {
   content: '';
@@ -153,19 +111,16 @@
   transform: translateX(-50%);
   top: 0px;
   bottom: 0px;
-  background-color: #03a9f4;
   display: none;
 }
 .sp-timeslot.selected:not(.is-booked) .sp-label,
 .sp-timeslot.selected:not(.is-off) .sp-label {
   top: -3px;
-  background-color: #03a9f4;
   color: #fff;
   display: block;
 }
 .sp-timeslot.selected:not(.is-booked):before,
 .sp-timeslot.selected:not(.is-off):before {
-  background-color: #03a9f4;
   display: block;
   width: 10px;
   height: 10px;
