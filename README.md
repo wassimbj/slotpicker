@@ -8,7 +8,7 @@ _Available in three langs: **ar, en and fr**, if you know any other, you can edi
 
 <br />
 
-#### Install
+### Install
 
 ```bash
 npm install slotpicker
@@ -16,7 +16,7 @@ npm install slotpicker
 
 <hr />
 
-#### Usage
+### Usage
 
 ```javascript
 import SlotPicker from 'slotpicker';
