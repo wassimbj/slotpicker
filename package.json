@@ -1,5 +1,5 @@
 {
-  "version": "2.4.3",
+  "version": "2.4.4",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -15,7 +15,6 @@
   "repository": {
     "url": "https://github.com/wassimbj/slotpicker"
   },
-
   "engines": {
     "node": ">=10"
   },
