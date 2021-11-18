@@ -43,9 +43,9 @@ import SlotPicker from 'slotpicker';
 />;
 ```
 
-> **the selectedSlot you will get in the onSelectTime prop**, is the "from" slot, if you want to display like the "from" and "to" selected slots its simple, the **_from = selectedSlot and to = selectedSlot + interval_**, use dayjs or momentjs to convert the secs to a readable format
+> the **selectedSlot** you will get in the **onSelectTime** prop, is the "from" slot, if you want to display like the "from" and "to" selected slots its simple, the **_from = selectedSlot and to = selectedSlot + interval_**, use dayjs or momentjs to convert the secs to a readable format
 
-**if you are storing the slots in some db, store them as seconds like that, then get them and convert them as i said using dayjs or momentjs, im doing that in my current project and its so easy and smooth to work with**
+**hint**: If you are storing the slots in some db, store them as seconds like that, then get them and convert them as i said using dayjs or momentjs
 
 ### Props
 
@@ -65,4 +65,4 @@ interface SlotPickerProps {
 
 ### TODO
 
-- [x] Rewrite the lib to TypeScript
+- ~~[x] Rewrite the lib to TypeScript~~
