@@ -65,4 +65,4 @@ interface SlotPickerProps {
 
 ### TODO
 
-- ~~[x] Rewrite the lib to TypeScript~~
+- ~~[ x ] Rewrite the lib to TypeScript~~
