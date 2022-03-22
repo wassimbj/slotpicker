@@ -1,4 +1,4 @@
-export type Langs = 'ar' | 'en' | 'fr';
+export type Langs = 'ar' | 'en';
 
 export interface SlotPickerProps {
   interval: number;
@@ -14,7 +14,7 @@ export interface SlotPickerProps {
 
 export interface TimeSlotProps {
   isOff: boolean;
-  timeInSec: number;
+  slot: number;
   interval: number;
   lang: Langs;
   selectedSlotColor?: string;
@@ -27,3 +27,14 @@ export interface LangProps {
   am: string;
   pm: string;
 }
+
+// export interface SelectedSlotResult {
+//   from: {
+//     hour: number; // 8,
+//     minute: number; // 30
+//   };
+//   to: {
+//     hour: number; // 9
+//     minute: number; // 30
+//   };
+// }

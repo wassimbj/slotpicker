@@ -6,11 +6,13 @@ import SlotPicker from '../.';
 const App = () => {
   return (
     <div style={{ padding: '3rem' }}>
-      {['ar', 'en', 'fr'].map((lang: 'ar' | 'en' | 'fr') => (
+      {['ar', 'en'].map((lang: 'ar' | 'en') => (
         <>
           <br />
           <SlotPicker
-            interval={20}
+            interval={60}
+            from={7.41}
+            to={23}
             lang={lang}
             onSelectTime={(s: number) => console.log(s)}
           />

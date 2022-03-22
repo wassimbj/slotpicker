@@ -10,13 +10,7 @@ const lang: Record<Langs, LangProps> = {
   ar: {
     selectedTitle: 'الوقت المحدد',
     am: 'صباحا',
-    pm: 'مساء',
-  },
-
-  fr: {
-    selectedTitle: 'heure sélectionnée',
-    am: 'Matin',
-    pm: 'Midi',
+    pm: 'مساءا',
   },
 };
 

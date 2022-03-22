@@ -9,25 +9,32 @@ dayjs.extend(duration);
 
 export default function TimeSlot({
   isOff,
-  timeInSec,
+  slot,
   interval,
   lang,
   selectedSlotColor,
   isSelected,
   onSelect,
 }: TimeSlotProps) {
+  const _24HourClockTime = slot * 60;
   const isPureTime =
-    dayjs.utc(dayjs.duration(timeInSec, 's').as('milliseconds')).get('s') == 0;
-
+    dayjs
+      .utc(dayjs.duration(_24HourClockTime, 's').as('milliseconds'))
+      .get('m') == 0; // e.g: 01:00 is, while 01:25 is not pure time ¯\_(ツ)_/¯
   const langData = langText[lang];
+  const secToPrettyTime = (sec: number): string =>
+    dayjs.utc(dayjs.duration(sec, 's').as('milliseconds')).format('hh:mm');
+
+  const amOrPm = (t: number): string =>
+    t >= 12 * 60 * 60 && t < 24 * 60 * 60 ? `${langData.pm}` : `${langData.am}`;
 
   return (
     <React.Fragment>
       <div
         className={`sp-timeslot ${isOff ? 'is-booked' : ''} ${
           isSelected && !isOff ? 'selected' : ''
-        } ${isPureTime ? 'with-tick' : ''}`}
-        data-minutes={timeInSec}
+        } ${isPureTime ? 'with-tick' : 'with-tick'}`}
+        data-minutes={_24HourClockTime}
         style={isSelected && !isOff ? { background: selectedSlotColor } : {}}
       >
         <span
@@ -37,37 +44,38 @@ export default function TimeSlot({
           {isSelected && !isOff ? (
             <span className="sp-success-label">{langData.selectedTitle}</span>
           ) : null}
-          {dayjs
-            .utc(dayjs.duration(timeInSec, 's').as('milliseconds'))
-            .format('mm:ss')}{' '}
-          {timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`} -{' '}
-          {dayjs
-            .utc(dayjs.duration(timeInSec + interval, 's').as('milliseconds'))
-            .format('mm:ss')}{' '}
-          {timeInSec >= 720 ? `${langData.pm}` : `${langData.am}`}
+          {`${secToPrettyTime(_24HourClockTime)}${amOrPm(
+            _24HourClockTime
+          )} - ${secToPrettyTime(_24HourClockTime + interval * 60)}${amOrPm(
+            _24HourClockTime + interval * 60
+          )}`}
         </span>
         {isOff ? null : (
           <input
             type="radio"
             name="time"
-            value={timeInSec}
+            value={_24HourClockTime}
             onChange={onSelect}
             className="radioBtn"
           />
         )}
-        <span className="sp-tick">
+        {/* <span className="sp-tick">
           <strong>
             {isPureTime
               ? dayjs
-                  .utc(dayjs.duration(timeInSec, 's').as('milliseconds'))
-                  .get('m')
+                  .utc(dayjs.duration(_24HourClockTime, 's').as('milliseconds'))
+                  .format('hh')
               : null}
           </strong>
-          {isPureTime
-            ? timeInSec >= 720
-              ? `${langData.pm}`
-              : `${langData.am}`
-            : null}
+          {isPureTime ? amOrPm(_24HourClockTime) : null}
+        </span> */}
+        <span className="sp-tick">
+          <strong>
+            {dayjs
+              .utc(dayjs.duration(_24HourClockTime, 's').as('milliseconds'))
+              .format('hh')}
+          </strong>
+          {amOrPm(_24HourClockTime)}
         </span>
       </div>
     </React.Fragment>

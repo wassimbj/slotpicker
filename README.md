@@ -18,6 +18,8 @@ npm install slotpicker
 
 ### Usage
 
+**Note** the `from`, `to`, `defaultSelectedTime` and `unAvailableSlots` parameters **_follows the 24-hour clock_**, so if you want you slotpicker to start from 00:00(12AM), in 24-hour clock its 24:00 so just put 24
+
 ```javascript
 import SlotPicker from 'slotpicker';
 
@@ -27,19 +29,19 @@ import SlotPicker from 'slotpicker';
   // Required, when user selects a time slot, you will get the "from" selected value in secs
   onSelectTime={selectedSlot => alert(selectedSlot)}
   // Optional, array of unavailable time slots
-  unAvailableSlots={[12 * 60, 15 * 60]}
+  unAvailableSlots={[12, 15]}
   // Optional, if you have a calendar with the time picker, put it here
   selectedDate={new Date()}
   // Optional, 8 = 08:00 AM, the start of the slots
-  from={8 * 60}
-  // Optional,  20 = 08:00 PM, the end of the time
-  to={20 * 60}
+  from={8}
+  // Optional,  20 = 08:00 PM, the end of the slots
+  to={20}
+  // Optional, 13 = 01:00 PM, will be selected by default
+  defaultSelectedTime={13}
   // Optional, selected slot color
   selectedSlotColor="#F09999"
   // Optional, language of the displayed text, default is english (en)
   lang={'ar'}
-  // Optional, 13 = 01:00 PM, will be selected by default
-  defaultSelectedTime={13 * 60}
 />;
 ```
 
@@ -58,7 +60,7 @@ interface SlotPickerProps {
    from?: number
    to?: number
    selectedSlotColor?: string
-   lang?: 'ar' | 'en' | 'fr'
+   lang?: 'ar' | 'en'
    defaultSelectedTime?: number
 }
 ```
