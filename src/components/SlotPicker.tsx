@@ -33,9 +33,15 @@ export default function TimeSlotPicker({
     Number.parseInt(startsAt.split(':')[0]) < 0 ||
     Number.parseInt(startsAt.split(':')[0]) > 23 ||
     Number.parseInt(endsAt.split(':')[0]) < 0 ||
-    Number.parseInt(endsAt.split(':')[0]) > 23
+    Number.parseInt(endsAt.split(':')[0]) > 23 ||
+    Number.parseInt(startsAt.split(':')[1]) < 0 ||
+    Number.parseInt(startsAt.split(':')[1]) > 59 ||
+    Number.parseInt(endsAt.split(':')[1]) < 0 ||
+    Number.parseInt(endsAt.split(':')[1]) > 59
   ) {
-    throw new Error('SlotPicker Error: hours value is between 00-23');
+    throw new Error(
+      'SlotPicker Error: hours value is between 00-23, and minutes is between 00-59'
+    );
   }
 
   let [selectedTime, setSelectedTime] = useState<{ data: string } | undefined>(

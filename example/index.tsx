@@ -12,11 +12,10 @@ const App = () => {
           <br />
           <SlotPicker
             interval={30}
-            from={'00:00'}
+            from={'07:00'}
             to={'20:00'}
             unAvailableSlots={['12:00']}
             lang={lang}
-            selectedSlotColor="#000"
             defaultSelectedTime="12:00"
             onSelectTime={(s: Dayjs) => console.log(s)}
           />
