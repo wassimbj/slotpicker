@@ -24,7 +24,7 @@ function App() {
             Select language
           </label>
           <select
-            onChange={(e) => setLang(e.target.value)}
+            onChange={e => setLang(e.target.value)}
             className="mx-auto w-40 text-center block mt-1 bg-gray-200 p-1 border-2 border-gray-400 rounded-md appearance-none"
           >
             <option value="ar" selected={lang === 'ar'}>
@@ -39,24 +39,29 @@ function App() {
           </select>
           <div className="mt-10">
             <SlotPicker
-              unAvailableSlots={[8 * 60, 12 * 60, 14 * 60]}
-              interval={interval}
+              interval={30}
+              from={'07:00'}
+              to={'20:00'}
+              unAvailableSlots={['12:00']}
               lang={lang}
-              selected_date={new Date()}
-              onSelectTime={(val) => setSelectedTime(val)}
-            />
+              defaultSelectedTime="12:00"
+              onSelectTime={s => console.log(s)}
+            />{' '}
           </div>
 
           <div className="max-w-sm mx-auto bg-gray-800 text-gray-400 p-5 mt-3 rounded">
             <p className="block mb-2 font-semibold text-lg">
               Result
-              <span className="font-light text-base"> (interval: {`${interval} min`}) </span>
+              <span className="font-light text-base">
+                {' '}
+                (interval: {`${interval} min`}){' '}
+              </span>
             </p>
             <code className="block">
-              From: {`${selectedTime}s`} = {' '}
+              From: {`${selectedTime}s`} ={' '}
               {!selectedTime ? ' Nothing' : secondsToTime(selectedTime)}
               <br />
-              To: {`${!selectedTime ? 0 : selectedTime + interval}s`} = {' '}
+              To: {`${!selectedTime ? 0 : selectedTime + interval}s`} ={' '}
               {!selectedTime
                 ? ' Nothing'
                 : secondsToTime(selectedTime + interval)}
