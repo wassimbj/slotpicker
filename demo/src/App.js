@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SlotPicker from 'slotpicker';
-import secondsToTime from './utils/secToTime';
 
 function App() {
   const [selectedTime, setSelectedTime] = useState(0);
@@ -18,7 +17,10 @@ function App() {
       <div className="mx-auto max-w-4xl">
         <div className="bg-white shadow p-5 rounded-lg mt-5">
           <h1 className="mt-5 font-bold text-center text-2xl">
-            ⌚ SlotPicker Demo
+            <span role="img" aria-label="emoji">
+              ⌚
+            </span>{' '}
+            SlotPicker Demo
           </h1>
           <label className="text-center font-bold block mt-10">
             Select language
@@ -33,9 +35,6 @@ function App() {
             <option value="en" selected={lang === 'en'}>
               English
             </option>
-            <option value="fr" selected={lang === 'fr'}>
-              French
-            </option>
           </select>
           <div className="mt-10">
             <SlotPicker
@@ -45,26 +44,24 @@ function App() {
               unAvailableSlots={['12:00']}
               lang={lang}
               defaultSelectedTime="12:00"
-              onSelectTime={s => console.log(s)}
-            />{' '}
+              onSelectTime={s => setSelectedTime(s)}
+            />
           </div>
 
           <div className="max-w-sm mx-auto bg-gray-800 text-gray-400 p-5 mt-3 rounded">
             <p className="block mb-2 font-semibold text-lg">
-              Result
               <span className="font-light text-base">
-                {' '}
-                (interval: {`${interval} min`}){' '}
+                interval: {`${interval} min`}
               </span>
             </p>
             <code className="block">
-              From: {`${selectedTime}s`} ={' '}
-              {!selectedTime ? ' Nothing' : secondsToTime(selectedTime)}
+              From:{' '}
+              {!selectedTime ? 'Select one' : selectedTime.format('hh:mmA')}
               <br />
-              To: {`${!selectedTime ? 0 : selectedTime + interval}s`} ={' '}
+              To:{' '}
               {!selectedTime
-                ? ' Nothing'
-                : secondsToTime(selectedTime + interval)}
+                ? 'Select one'
+                : selectedTime.add(interval, 'm').format('hh:mmA')}
             </code>
           </div>
         </div>
