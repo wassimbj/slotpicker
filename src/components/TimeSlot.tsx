@@ -12,7 +12,6 @@ export default function TimeSlot({
   isOff,
   slot,
   interval,
-  // id,
   lang,
   selectedSlotColor,
   isSelected,

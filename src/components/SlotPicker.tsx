@@ -25,7 +25,7 @@ export default function TimeSlotPicker({
     disabledSlots = unAvailableSlots;
   }
 
-  let sSlotColor = !selectedSlotColor ? '#028702' : selectedSlotColor;
+  selectedSlotColor = !selectedSlotColor ? '#028702' : selectedSlotColor;
   // following the 24-hour clock
   let startsAt = !from ? '08:00' : from; // 8AM
   let endsAt = !to ? '20:00' : to; // 8PM
@@ -79,13 +79,12 @@ export default function TimeSlotPicker({
             {timeSlots.map((slot, i) => (
               <TimeSlot
                 interval={interval}
-                id={`_${i}`}
                 // the slot is off if it's less then current time or already blacklisted(in unAvailableSlots)
                 isOff={
                   slot.isBefore(currTime) ||
                   disabledSlots.indexOf(slot.format('HH:mm')) !== -1
                 }
-                selectedSlotColor={sSlotColor}
+                selectedSlotColor={selectedSlotColor}
                 slot={slot}
                 lang={lang || 'en'}
                 key={i}

@@ -17,7 +17,6 @@ export interface TimeSlotProps {
   isOff: boolean;
   slot: Dayjs;
   interval: number;
-  id?: string;
   lang: Langs;
   selectedSlotColor?: string;
   isSelected: boolean;

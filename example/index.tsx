@@ -16,6 +16,7 @@ const App = () => {
             to={'20:00'}
             unAvailableSlots={['12:00']}
             lang={lang}
+            selectedSlotColor="#000"
             defaultSelectedTime="12:00"
             onSelectTime={(s: Dayjs) => console.log(s)}
           />
