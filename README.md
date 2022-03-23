@@ -48,7 +48,6 @@ interface SlotPickerProps {
    interval: number
    onSelectTime: (from: DayJs) => any
    unAvailableSlots?: Array<string>
-   selectedDate?: Date
    from?: string
    to?: string
    selectedSlotColor?: string
