@@ -9,7 +9,7 @@ describe('it', () => {
     ReactDOM.render(
       <SlotPicker
         interval={30}
-        onSelectTime={(from: Dayjs) => console.log('OK')}
+        onSelectTime={(from: Dayjs) => console.log(from)}
       />,
       div
     );
