@@ -1,24 +1,20 @@
-> ⌚ slotpicker, a nice and simple time slot picker, its actually a React component, i hope you find it useful
 
-**please note that this package is using [dayjs](https://github.com/iamkun/dayjs), its more lightweight then moment and have the same exact syntax that momentjs is using**
+# ⌚ slotpicker, nice and simple react component time-slot picker
 
-_Available in three langs: **ar, en and fr**, if you know any other, you can edit the lang.js file_
+**please note that this package is using [dayjs](https://github.com/iamkun/dayjs), its more lightweight then moment and have the same exact syntax**
 
 [See Demo](https://rc-slotpicker.netlify.app)
 
-<br />
 
-### Install
+## Install
 
 ```bash
 npm install slotpicker
 ```
 
-<hr />
+## Usage
 
-### Usage
-
-**Note** the `from`, `to`, `defaultSelectedTime` and `unAvailableSlots` parameters **_follows the 24-hour clock_**, so if you want you slotpicker to start from 00:00(12AM), in 24-hour clock its 24:00 so just put 24
+**Note:** the `from`, `to`, `defaultSelectedTime` and `unAvailableSlots` parameters **_follows the 24-hour clock_**, and if your time picker has 00:00, you should put it in the from param.
 
 ```javascript
 import SlotPicker from 'slotpicker';
@@ -26,45 +22,41 @@ import SlotPicker from 'slotpicker';
 <SlotPicker
   // Required, interval between two slots in minutes, 30 = 30 min
   interval={30}
-  // Required, when user selects a time slot, you will get the "from" selected value in secs
-  onSelectTime={selectedSlot => alert(selectedSlot)}
+  // Required, when user selects a time slot, you will get the 'from' selected value
+  onSelectTime={(from) => console.log(from)}
   // Optional, array of unavailable time slots
-  unAvailableSlots={[12, 15]}
-  // Optional, if you have a calendar with the time picker, put it here
-  selectedDate={new Date()}
-  // Optional, 8 = 08:00 AM, the start of the slots
-  from={8}
-  // Optional,  20 = 08:00 PM, the end of the slots
-  to={20}
-  // Optional, 13 = 01:00 PM, will be selected by default
-  defaultSelectedTime={13}
+  unAvailableSlots={['10:00', '15:30']}
+  // Optional, 8AM the start of the slots
+  from={'08:00'}
+  // Optional, 09:00PM the end of the slots
+  to={'21:00'}
+  // Optional, 01:00 PM, will be selected by default
+  defaultSelectedTime={'13:00'}
   // Optional, selected slot color
-  selectedSlotColor="#F09999"
+  selectedSlotColor='#F09999'
   // Optional, language of the displayed text, default is english (en)
-  lang={'ar'}
+  lang='ar'
 />;
 ```
 
-> the **selectedSlot** you will get in the **onSelectTime** prop, is the "from" slot, if you want to display like the "from" and "to" selected slots its simple, the **_from = selectedSlot and to = selectedSlot + interval_**, use dayjs or momentjs to convert the secs to a readable format
+> the **selectedSlot** you will get in the **onSelectTime** prop, is the 'from' slot, if you want to display like the 'from' and 'to' selected slots its simple, the **_from = selectedSlot and to = selectedSlot + interval_**, use dayjs to manage it
 
-**hint**: If you are storing the slots in some db, store them as seconds like that, then get them and convert them as i said using dayjs or momentjs
-
-### Props
+## Props
 
 ```ts
 interface SlotPickerProps {
    interval: number
-   onSelectTime: (from: number) => any
-   unAvailableSlots?: Array<number>
+   onSelectTime: (from: DayJs) => any
+   unAvailableSlots?: Array<string>
    selectedDate?: Date
-   from?: number
-   to?: number
+   from?: string
+   to?: string
    selectedSlotColor?: string
    lang?: 'ar' | 'en'
-   defaultSelectedTime?: number
+   defaultSelectedTime?: string
 }
 ```
 
-### TODO
+## TODO
 
 - [x] ~~Rewrite the lib to TypeScript~~

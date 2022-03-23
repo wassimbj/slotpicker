@@ -2,6 +2,7 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import SlotPicker from '../.';
+import { Dayjs } from 'dayjs';
 
 const App = () => {
   return (
@@ -10,11 +11,13 @@ const App = () => {
         <>
           <br />
           <SlotPicker
-            interval={60}
-            from={7.41}
-            to={23}
+            interval={30}
+            from={'00:00'}
+            to={'20:00'}
+            unAvailableSlots={['12:00']}
             lang={lang}
-            onSelectTime={(s: number) => console.log(s)}
+            defaultSelectedTime="12:00"
+            onSelectTime={(s: Dayjs) => console.log(s)}
           />
         </>
       ))}

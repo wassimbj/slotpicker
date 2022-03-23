@@ -10,7 +10,7 @@ const lang: Record<Langs, LangProps> = {
   ar: {
     selectedTitle: 'الوقت المحدد',
     am: 'صباحا',
-    pm: 'مساءا',
+    pm: 'مساء',
   },
 };
 

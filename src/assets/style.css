@@ -30,6 +30,7 @@
 
 .sp-timeslot {
   height: 24px;
+  /* border: none; */
   flex-grow: 1;
   margin: 0px;
   box-shadow: inset 1px 0px 0px 0px #fff, inset -1px 0px 0px 0px #fff;

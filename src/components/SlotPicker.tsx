@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import '../assets/style.css';
 import TimeSlot from './TimeSlot';
 import { SlotPickerProps } from '../types';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import duration from 'dayjs/plugin/duration';
-
 dayjs.extend(utc);
 dayjs.extend(duration);
 
 export default function TimeSlotPicker({
   interval,
   unAvailableSlots,
-  selectedDate,
-  from,
-  to,
+  from, // 09:00
+  to, // 20:00
   lang,
   selectedSlotColor,
   defaultSelectedTime,
@@ -22,65 +20,80 @@ export default function TimeSlotPicker({
 }: SlotPickerProps) {
   // default stuff
   lang = !lang ? 'en' : lang;
-  unAvailableSlots =
-    !unAvailableSlots || unAvailableSlots.length === 0 ? [] : unAvailableSlots;
-  selectedDate = !selectedDate ? new Date() : selectedDate;
-  selectedSlotColor = !selectedSlotColor ? '#000000' : selectedSlotColor;
-  // following the 24-hour clock
-  let startsAt = !from ? 8 : from; // 8AM
-  let endsAt = !to ? 20 : to; // 8PM
-  if (endsAt < startsAt) {
-    throw new Error('Slotpicker: `to` must be greater then the `from` slot');
-  } else if (endsAt > 25 || startsAt < 1) {
-    throw new Error(
-      'Slotpicker: Please follow the 24-hour clock when you put the params, e.g: 00:00 => 24:00, so put 24'
-    );
+  let disabledSlots: string[] = [];
+  if (!!unAvailableSlots) {
+    disabledSlots = unAvailableSlots;
   }
 
-  let [selectedTime, setSelectedTime] = useState<number>(
-    defaultSelectedTime || 0
+  let sSlotColor = !selectedSlotColor ? '#028702' : selectedSlotColor;
+  // following the 24-hour clock
+  let startsAt = !from ? '08:00' : from; // 8AM
+  let endsAt = !to ? '20:00' : to; // 8PM
+  if (
+    Number.parseInt(startsAt.split(':')[0]) < 0 ||
+    Number.parseInt(startsAt.split(':')[0]) > 23 ||
+    Number.parseInt(endsAt.split(':')[0]) < 0 ||
+    Number.parseInt(endsAt.split(':')[0]) > 23
+  ) {
+    throw new Error('SlotPicker Error: hours value is between 00-23');
+  }
+
+  let [selectedTime, setSelectedTime] = useState<{ data: string } | undefined>(
+    { data: defaultSelectedTime || '' } || undefined
   );
-  const handleSelection = (e: any) => {
-    let selectedSlot = e.target.value;
-    onSelectTime(Number(selectedSlot));
-    setSelectedTime(selectedSlot);
+
+  const handleSelection = (data: Dayjs) => {
+    setSelectedTime({ data: data.format('HH:mm') });
+    onSelectTime(data);
   };
 
-  //  generate time slots
-  let timeSlots = [];
-  const isSelectedDateToday = dayjs(
-    dayjs(new Date(selectedDate)).format('YYYY-MM-DD')
-  ).isSame(dayjs().format('YYYY-MM-DD'));
   const currTime = dayjs().format('HH:mm');
-  const currTimeInSec = dayjs.duration(`00:${currTime}`).asSeconds(); // time in sec
+  const timeSlots: Dayjs[] = [
+    dayjs()
+      .set('h', Number.parseInt(startsAt.split(':')[0]))
+      .set('m', Number.parseInt(startsAt.split(':')[1])),
+  ];
 
-  for (
-    let slot = startsAt * 60;
-    slot < endsAt * 60; // this will ensure the end slot doesn't exceed the `to` param
-    slot = slot + interval
+  // `i` is just to not cause an infinity loop, if sth went wrong
+  let limit = 100;
+  let timeAt: string = startsAt;
+  while (
+    dayjs(`01-01-2001 ${timeAt}`).isBefore(dayjs(`01-01-2001 ${endsAt}`)) &&
+    limit > 0
   ) {
-    timeSlots.push(
-      <TimeSlot
-        interval={interval}
-        // the slot is off if it's less the then current time or already blacklisted(in unAvailableSlots)
-        isOff={
-          (slot < currTimeInSec && isSelectedDateToday) ||
-          unAvailableSlots.indexOf(slot / 60) !== -1
-        }
-        selectedSlotColor={selectedSlotColor}
-        slot={slot}
-        lang={lang}
-        key={slot}
-        isSelected={selectedTime == slot * 60}
-        onSelect={handleSelection}
-      />
-    );
+    let t = dayjs()
+      .set('h', Number.parseInt(timeAt.split(':')[0]))
+      .set('m', Number.parseInt(timeAt.split(':')[1]))
+      .add(interval, 'm');
+    timeSlots.push(t);
+
+    timeAt = t.format('HH:mm');
+    limit--;
   }
+
   return (
     <div className="p-5">
       <div className={`time-selector-w d-block ${lang == 'ar' && 'sp-rtl'}`}>
         <div className="os-times-w">
-          <div className="timeslots">{timeSlots.map(slot => slot)}</div>
+          <div className="timeslots">
+            {timeSlots.map((slot, i) => (
+              <TimeSlot
+                interval={interval}
+                id={`_${i}`}
+                // the slot is off if it's less then current time or already blacklisted(in unAvailableSlots)
+                isOff={
+                  slot.isBefore(currTime) ||
+                  disabledSlots.indexOf(slot.format('HH:mm')) !== -1
+                }
+                selectedSlotColor={sSlotColor}
+                slot={slot}
+                lang={lang || 'en'}
+                key={i}
+                isSelected={selectedTime?.data == slot.format('HH:mm')}
+                onSelect={handleSelection}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

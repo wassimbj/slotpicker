@@ -68,7 +68,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "dayjs": "^1.10.6",
+    "dayjs": "^1.11.0",
     "rollup-plugin-postcss": "^4.0.1"
   }
 }

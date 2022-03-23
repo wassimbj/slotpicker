@@ -1,25 +1,27 @@
+import { Dayjs } from 'dayjs';
+
 export type Langs = 'ar' | 'en';
 
 export interface SlotPickerProps {
   interval: number;
-  unAvailableSlots?: Array<number>;
-  selectedDate?: Date;
-  from?: number;
-  to?: number;
+  unAvailableSlots?: Array<string>;
+  from?: string;
+  to?: string;
   lang?: Langs;
   selectedSlotColor?: string;
-  defaultSelectedTime?: number;
-  onSelectTime: (selectedTime: number) => any;
+  defaultSelectedTime?: string;
+  onSelectTime: (selectedTime: Dayjs) => any;
 }
 
 export interface TimeSlotProps {
   isOff: boolean;
-  slot: number;
+  slot: Dayjs;
   interval: number;
+  id?: string;
   lang: Langs;
   selectedSlotColor?: string;
   isSelected: boolean;
-  onSelect: (e: any) => any;
+  onSelect: (val: Dayjs) => any;
 }
 
 export interface LangProps {
@@ -27,14 +29,3 @@ export interface LangProps {
   am: string;
   pm: string;
 }
-
-// export interface SelectedSlotResult {
-//   from: {
-//     hour: number; // 8,
-//     minute: number; // 30
-//   };
-//   to: {
-//     hour: number; // 9
-//     minute: number; // 30
-//   };
-// }
