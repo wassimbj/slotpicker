@@ -63,8 +63,16 @@ export default function TimeSlotPicker({
   // `i` is just to not cause an infinity loop, if sth went wrong
   let limit = 100;
   let timeAt: string = startsAt;
+  // console.log(timeAt, endsAt);
+  // console.log(
+  //   dayjs(`2001-01-01 ${timeAt}`, 'YYYY-MM-DD HH:mm'),
+  //   dayjs(`2001-01-01 ${endsAt}`, 'YYYY-MM-DD HH:mm')
+  // );
+
   while (
-    dayjs(`01-01-2001 ${timeAt}`).isBefore(dayjs(`01-01-2001 ${endsAt}`)) &&
+    dayjs(`2001-01-01 ${timeAt}`, 'YYYY-MM-DD HH:mm').isBefore(
+      dayjs(`2001-01-01 ${endsAt}`, 'YYYY-MM-DD HH:mm')
+    ) &&
     limit > 0
   ) {
     let t = dayjs()
